@@ -7,13 +7,13 @@ type Todo = {
 };
 
 type TodoListProps = {
-  todos: Todo[];
+  todoList: Todo[];
   onDelete: Function;
 };
-function TodoList({ todos, onDelete }: TodoListProps) {
+function TodoList({ todoList, onDelete }: TodoListProps) {
   return (
     <div className="TodoList">
-      {todos.map((todo) => {
+      {todoList.map((todo) => {
         return <TodoItem todo={todo} key={todo.id} onDelete={onDelete} />;
       })}
     </div>

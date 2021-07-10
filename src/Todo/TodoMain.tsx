@@ -6,7 +6,7 @@ import { useCallback } from "react";
 import { useRef } from "react";
 
 function TodoMain() {
-  const [todos, setTodos] = useState([
+  const [todoList, setTodoList] = useState([
     {
       id: 1,
       title: "밥먹기",
@@ -20,7 +20,7 @@ function TodoMain() {
       title: "눕기",
     },
   ]);
-  const nextId = useRef(todos.length + 1);
+  const nextId = useRef(todoList.length + 1);
   const [inputs, setInputs] = useState({
     title: "",
   });
@@ -40,24 +40,24 @@ function TodoMain() {
       id: nextId.current,
       title,
     };
-    setTodos(todos.concat(todo));
+    setTodoList(todoList.concat(todo));
     setInputs({
       title: "",
     });
     nextId.current += 1;
-  }, [title, todos]);
+  }, [title, todoList]);
 
   const onDelete = useCallback(
     (id: number) => {
-      setTodos(todos.filter((todo) => todo.id !== id));
+      setTodoList(todoList.filter((todo) => todo.id !== id));
     },
-    [todos]
+    [todoList]
   );
 
   return (
     <div className="TodoMain">
       <CreateTodo onCreate={onCreate} title={title} onChange={onChange} />
-      <TodoList todos={todos} onDelete={onDelete} />
+      <TodoList todoList={todoList} onDelete={onDelete} />
     </div>
   );
 }
